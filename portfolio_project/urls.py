@@ -25,19 +25,23 @@ admin.site.index_title = 'Admin'
 urlpatterns = [
     path('', include('core.urls')),
     path('portfolio/', include('portfolio.urls')),
+    # path('jet/', include('jet.urls', 'jet')),  # Django JET URLS
+
+
+
 
     # path("__debug__/", include(debug_toolbar.urls)),
 
     path('admin/', admin.site.urls),
-    
+
 
 ]
 
- 
-# pip install celery 
+
+# pip install celery
 # pip install --dev pytest
-# pip install pytest 
-# pip install pytest-django 
+# pip install pytest
+# pip install pytest-django
 # pip install model-bakery
-# pip install waitress   
-# pip install django-silk 
+# pip install waitress
+# pip install django-silk

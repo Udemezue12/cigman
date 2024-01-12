@@ -36,6 +36,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    # 'jet',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -100,18 +101,20 @@ WSGI_APPLICATION = 'portfolio_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'portfolio',
-#         'HOST': 'localhost',
-#         'PASSWORD': '666555888',
-#         'USER': 'root'
 
-#     }
-# }
 
 # Postgre Sql Database
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': config('DB_ENGINE'),
+#         'NAME': config('DB_NAME'),
+#         'HOST': config('DB_HOST'),
+#         'PASSWORD': config('DB_PASSWORD'),
+#         'USER': config('DB_USER'),
+#         'PORT': config('DB_PORT'),
+#     }
+# }
 
 DATABASES = {
     'default': {
@@ -120,7 +123,9 @@ DATABASES = {
         'HOST': config('DB_HOST'),
         'PASSWORD': config('DB_PASSWORD'),
         'USER': config('DB_USER'),
-        'PORT': config('DB_PORT'),
+        # 'OPTIONS': {
+        #     'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+        # },
     }
 }
 
@@ -199,18 +204,18 @@ CELERY_BROKER_URL = 'redis://localhost:6376/1'
 
 # Amazon S3 configuration
 
-AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
-AWS_STORAGE_BUCKET_NAME = config('AWS_STORAGE_BUCKET_NAME')
+# AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
+# AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
+# AWS_STORAGE_BUCKET_NAME = config('AWS_STORAGE_BUCKET_NAME')
 
 
 
-STORAGES = {"staticfiles": {
-    'BACKEND': 'storages.backends.s3boto3.S3StaticStorage'
-}}
+# STORAGES = {"staticfiles": {
+#     'BACKEND': 'storages.backends.s3boto3.S3StaticStorage'
+# }}
 
-AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+# AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 
-AWS_S3_FILE_OVERWRITE = False
+# AWS_S3_FILE_OVERWRITE = False
 
-ADMIN_MEDIA_PREFIX = 'static/admin/'
+# ADMIN_MEDIA_PREFIX = 'static/admin/'
