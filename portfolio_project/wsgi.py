@@ -8,9 +8,12 @@ https://docs.djangoproject.com/en/5.0/howto/deployment/wsgi/
 """
 
 import os
-
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'portfolio_project.settings')
+# Load the appropriate settings based on the environment
+if os.environ.get('DJANGO_SETTINGS_MODULE') == 'portfolio_project.settings.prod':
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'portfolio_project.settings.prod')
+else:
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'portfolio_project.settings.dev')
 
 application = get_wsgi_application()

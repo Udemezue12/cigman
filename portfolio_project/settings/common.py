@@ -13,12 +13,10 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 from datetime import timedelta
 from pathlib import Path
 import os
-from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = config('SECRET_KEY')
 
 
 # Quick-start development settings - unsuitable for production
@@ -28,9 +26,7 @@ SECRET_KEY = config('SECRET_KEY')
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
-ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -53,7 +49,8 @@ INSTALLED_APPS = [
     'core',
     'tags',
     'likes',
-    'portfolio'
+    'portfolio',
+    'playground',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -116,18 +113,7 @@ WSGI_APPLICATION = 'portfolio_project.wsgi.application'
 #     }
 # }
 
-DATABASES = {
-    'default': {
-        'ENGINE': config('DB_ENGINE'),
-        'NAME': config('DB_NAME'),
-        'HOST': config('DB_HOST'),
-        'PASSWORD': config('DB_PASSWORD'),
-        'USER': config('DB_USER'),
-        # 'OPTIONS': {
-        #     'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
-        # },
-    }
-}
+
 
 
 
@@ -166,6 +152,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -202,6 +189,13 @@ CORS_ALLOWED_ORIGINS = [
 
 CELERY_BROKER_URL = 'redis://localhost:6376/1'
 
+EMAIL_BACKEND  = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'localhost'
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+EMAIL_PORT = 2525
+DEFAULT_FROM_EMAIL = 'udemezue0009@gmail.com'
+
 # Amazon S3 configuration
 
 # AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
@@ -219,3 +213,39 @@ CELERY_BROKER_URL = 'redis://localhost:6376/1'
 # AWS_S3_FILE_OVERWRITE = False
 
 # ADMIN_MEDIA_PREFIX = 'static/admin/'
+
+CELERY_BEAT_SCHEDULE = {
+    'notify_customers': {
+        'task': 'playground.tasks.notify_customers',
+        'schedule': 5,
+        'args': ['Hello World'],
+    }
+}
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler'
+        },
+        'file': {
+            'class': 'logging.FileHandler',
+            'filename': 'general.log',
+            'formatter': 'verbose'
+        }
+    },
+    'loggers': {
+        '': {
+            'handlers': ['console', 'file'],
+            'level': os.environ.get('DJANGO_LOG_LEVEL', 'INFO')
+        }
+    },
+    'formatters': {
+        'verbose': {
+            'format': '{asctime} ({levelname}) - {name} - {message}',
+            'style': '{'
+        }
+    }
+}
+
