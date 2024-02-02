@@ -838,3 +838,4 @@ Traceback (most recent call last):
     raise ConnectionError(str(exc)) from exc
 kombu.exceptions.OperationalError: Connection closed by server.
 2024-02-01 15:59:39,084 (INFO) - django.utils.autoreload - Watching for file changes with StatReloader
+2024-02-01 16:07:56,266 (INFO) - django.utils.autoreload - Watching for file changes with StatReloader
