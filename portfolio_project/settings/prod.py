@@ -28,7 +28,7 @@ EMAIL_HOST = os.environ.get('MAILTRAP_SMTP_SERVER')
 EMAIL_PORT = os.environ.get('MAILTRAP_SMTP_PORT')
 EMAIL_HOST_USER = os.environ.get('MAILTRAP_SMTP _LOGIN')
 EMAIL_PASSWORD= os.environ.get('MAILTRAP_SMTP_PASSWORD')
-default_from_email = config('DEFAULT_FROM_EMAIL')
+DEFAULT_FROM_EMAIL=("udemezue0009@gmail.com")
 
 REDIS_URL = os.environ.get('REDIS_URL', 'redis://localhost:6379/1')
 
