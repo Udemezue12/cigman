@@ -1,6 +1,7 @@
 from .common import *
 import os
 import dj_database_url
+from decouple import config
 
 
 SECRET_KEY = os.environ['SECRET_KEY']
@@ -27,7 +28,7 @@ EMAIL_HOST = os.environ.get('MAILTRAP_SMTP_SERVER')
 EMAIL_PORT = os.environ.get('MAILTRAP_SMTP_PORT')
 EMAIL_HOST_USER = os.environ.get('MAILTRAP_SMTP _LOGIN')
 EMAIL_PASSWORD= os.environ.get('MAILTRAP_SMTP_PASSWORD')
-DEFAULT_FROM_EMAIL= ['udemezue0009@gmail.com']
+DEFAULT_FROM_EMAIL= config('DEFAULT_FROM_EMAIL')
 
 REDIS_URL = os.environ.get('REDIS_URL', 'redis://localhost:6379/1')
 
