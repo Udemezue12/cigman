@@ -8,6 +8,8 @@ SECRET_KEY = os.environ['SECRET_KEY']
 
 DEBUG = False
 ALLOWED_HOSTS = ['cigman-store-ed64e91baede.herokuapp.com']
+CSRF_TRUSTED_ORIGINS = ['https://cigman-store-ed64e91baede.herokuapp.com']
+
 
 PORT = int(os.environ.get('PORT', 8080))
 

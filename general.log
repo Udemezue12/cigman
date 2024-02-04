@@ -839,3 +839,5 @@ Traceback (most recent call last):
 kombu.exceptions.OperationalError: Connection closed by server.
 2024-02-01 15:59:39,084 (INFO) - django.utils.autoreload - Watching for file changes with StatReloader
 2024-02-01 16:07:56,266 (INFO) - django.utils.autoreload - Watching for file changes with StatReloader
+2024-02-03 02:26:59,837 (INFO) - django.utils.autoreload - Watching for file changes with StatReloader
+2024-02-03 02:27:05,823 (WARNING) - django.request - Not Found: /favicon.ico
